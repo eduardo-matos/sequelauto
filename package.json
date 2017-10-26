@@ -4,7 +4,8 @@
   "description": "Automatically generate records on database for Sequelize's model",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mocha --require babel-core/register tests"
+    "test": "mocha --require babel-core/register tests",
+    "lint": "./node_modules/.bin/eslint src/"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,9 @@
     "babel-core": "6.26.0",
     "babel-preset-env": "1.6.1",
     "chai": "4.1.2",
+    "eslint": "4.9.0",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.8.0",
     "mocha": "4.0.1"
   }
 }
