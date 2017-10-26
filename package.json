@@ -1,0 +1,33 @@
+{
+  "name": "sequelauto",
+  "version": "0.0.1",
+  "description": "Automatically generate records on database for Sequelize's model",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "mocha --require babel-core/register tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardo-matos/sequelauto.git"
+  },
+  "keywords": [
+    "sequelize",
+    "sql",
+    "model",
+    "automatic"
+  ],
+  "author": "Eduardo Matos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eduardo-matos/sequelauto/issues"
+  },
+  "homepage": "https://github.com/eduardo-matos/sequelauto#README.md",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "chai": "4.1.2",
+    "mocha": "4.0.1"
+  }
+}
