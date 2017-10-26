@@ -2,7 +2,7 @@
   "name": "sequelauto",
   "version": "0.0.1",
   "description": "Automatically generate records on database for Sequelize's model",
-  "main": "dist/index.js",
+  "main": "dist/sequelauto.js",
   "scripts": {
     "test": "mocha --require babel-core/register tests",
     "lint": "./node_modules/.bin/eslint src/"
