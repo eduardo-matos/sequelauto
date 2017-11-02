@@ -5,23 +5,23 @@ function create(model, attributes = {}) {
   const newAttributes = Object.assign({}, attributes);
 
   Object.keys(model.tableAttributes).forEach((attr) => {
-    if (!model.tableAttributes[attr].allowNull && !(attr in attributes)) {
+    if (model.tableAttributes[attr].autoIncrement) return;
+    if (model.tableAttributes[attr].allowNull || attr in attributes) return;
 
-      types.every(([type, func]) => {
-        if (model.tableAttributes[attr].type instanceof type) {
-          const { options } = model.tableAttributes[attr].type;
-          if (options && options.values) {
-            newAttributes[attr] = func(options.values); // enum
-          } else if (options && options.length) {
-            newAttributes[attr] = func(options.length); // string, char...
-          } else {
-            newAttributes[attr] = func();
-          }
-          return false;
+    types.every(([type, func]) => {
+      if (model.tableAttributes[attr].type instanceof type) {
+        const { options } = model.tableAttributes[attr].type;
+        if (options && options.values) {
+          newAttributes[attr] = func(options.values); // enum
+        } else if (options && options.length) {
+          newAttributes[attr] = func(options.length); // string, char...
+        } else {
+          newAttributes[attr] = func();
         }
-        return true;
-      });
-    }
+        return false;
+      }
+      return true;
+    });
   });
 
   return model.create(newAttributes);

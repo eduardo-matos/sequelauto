@@ -225,7 +225,7 @@ describe('Create One', () => {
 
 describe('Creates Many', () => {
   it('Returns all created records', () => {
-    sequelauto.createMany(Uuids, {}, 4).then((records) => {
+    return sequelauto.createMany(Uuids, {}, 4).then((records) => {
       const [record1, record2, record3, record4] = records;
 
       expect(record1.field_uuid === record2.field_uuid).to.equal(false);
