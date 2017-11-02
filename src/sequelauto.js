@@ -1,6 +1,12 @@
 import { hasToFillForeignKeys, fillAttributes, getForeignKeys } from './helper';
 
 
+/**
+ * Create entry on database from a sequelize model and return that instance.
+ * @param {Sequelize.Model} model
+ * @param {Object} attributes Attributes you'd pass to Model.create
+ * @return {Promise}
+ */
 function create(model, attributes = {}) {
   if (hasToFillForeignKeys(model, attributes)) {
     return createWithForeignKeys(model, attributes);
@@ -9,6 +15,13 @@ function create(model, attributes = {}) {
   return model.create(fillAttributes(model, attributes));
 }
 
+/**
+ * Create many entries on database from a sequelize model and return all their instances.
+ * @param {Sequelize.Model} model
+ * @param {Integer} quantity How many entries will be created
+ * @param {Object} attributes Attributes you'd pass to Model.create
+ * @return {Promise}
+ */
 function createMany(model, quantity = 1, attributes) {
   const promises = [];
   for (let i = 0; i < quantity; i += 1) {
