@@ -1,6 +1,7 @@
 # Sequelauto
 
 [![Build Status](https://travis-ci.org/eduardo-matos/sequelauto.svg?branch=master)](https://travis-ci.org/eduardo-matos/sequelauto)
+[![npm version](https://badge.fury.io/js/sequelauto.svg)](https://badge.fury.io/js/sequelauto)
 
 Automatically generate records on database for Sequelize's model.
 
