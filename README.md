@@ -12,7 +12,7 @@ Let's say you have the following model:
 ```js
 const Sequelize = require('sequelize');
 
-const sequelize = Sequelize('sqlite://');
+const sequelize = new Sequelize('sqlite://');
 
 module.exports = User = sequelize.define('user', {
   name: {
