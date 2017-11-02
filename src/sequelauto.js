@@ -5,8 +5,13 @@ function create(model, attributes = {}) {
   const newAttributes = Object.assign({}, attributes);
 
   Object.keys(model.tableAttributes).forEach((attr) => {
-    if (model.tableAttributes[attr].autoIncrement) return;
-    if (model.tableAttributes[attr].allowNull || attr in attributes) return;
+    const isAutoIncrement = model.tableAttributes[attr].autoIncrement;
+    const allowsNull = model.tableAttributes[attr].allowNull;
+    const hasUsedDefinedValue = attr in attributes;
+
+    if (isAutoIncrement || allowsNull || hasUsedDefinedValue) {
+      return;
+    }
 
     types.every(([type, func]) => {
       if (model.tableAttributes[attr].type instanceof type) {
