@@ -5,7 +5,8 @@
   "main": "dist/sequelauto.js",
   "scripts": {
     "test": "mocha --require babel-core/register tests",
-    "lint": "./node_modules/.bin/eslint src/"
+    "lint": "./node_modules/.bin/eslint src/",
+    "build": "./node_modules/.bin/babel src/ --out-dir dist/"
   },
   "repository": {
     "type": "git",
