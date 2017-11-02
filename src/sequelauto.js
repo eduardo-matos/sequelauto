@@ -9,7 +9,7 @@ function create(model, attributes = {}) {
   return model.create(fillAttributes(model, attributes));
 }
 
-function createMany(model, attributes, quantity = 1) {
+function createMany(model, quantity = 1, attributes) {
   const promises = [];
   for (let i = 0; i < quantity; i += 1) {
     promises.push(create(model, attributes));
