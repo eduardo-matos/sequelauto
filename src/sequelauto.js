@@ -7,7 +7,7 @@ import { hasToFillForeignKeys, fillAttributes, getForeignKeys } from './helper';
  * @param {Object} attributes Attributes you'd pass to Model.create
  * @return {Promise}
  */
-function create(model, attributes = {}) {
+export function create(model, attributes = {}) {
   if (hasToFillForeignKeys(model, attributes)) {
     return createWithForeignKeys(model, attributes);
   }
@@ -22,7 +22,7 @@ function create(model, attributes = {}) {
  * @param {Object} attributes Attributes you'd pass to Model.create
  * @return {Promise}
  */
-function createMany(model, quantity = 1, attributes) {
+export function createMany(model, quantity = 1, attributes) {
   const promises = [];
   for (let i = 0; i < quantity; i += 1) {
     promises.push(create(model, attributes));
@@ -48,8 +48,3 @@ function createWithForeignKeys(model, attributes) {
       return create(model, attrs);
     });
 }
-
-export default {
-  create,
-  createMany,
-};
