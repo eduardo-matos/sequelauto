@@ -16,7 +16,10 @@
     "sequelize",
     "sql",
     "model",
-    "automatic"
+    "automatic",
+    "tdd",
+    "testing",
+    "fixture"
   ],
   "author": "Eduardo Matos",
   "license": "MIT",
