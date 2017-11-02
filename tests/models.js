@@ -136,3 +136,17 @@ export const Customs = db.define('customs', {
 }, {
   timestamps: false,
 });
+
+export const Manufacturer = db.define('manufacturer', {
+  name: Sequelize.STRING,
+}, {
+  timestamps: false,
+});
+
+export const Car = db.define('car', {
+  model: Sequelize.STRING,
+}, {
+  timestamps: false,
+});
+
+Car.belongsTo(Manufacturer);

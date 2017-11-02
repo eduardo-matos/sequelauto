@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import isPlainObject from 'is-plain-object';
 import sequelauto from '../src/sequelauto';
-import './db';
+import db from './db';
 import {
   Nulls,
   Strings,
@@ -13,6 +13,8 @@ import {
   Jsons,
   Blobs,
   Customs,
+
+  Car,
 } from './models';
 
 
@@ -232,6 +234,14 @@ describe('Creates Many', () => {
       expect(record2.field_uuid === record3.field_uuid).to.equal(false);
       expect(record3.field_uuid === record4.field_uuid).to.equal(false);
       expect(record4.field_uuid === record1.field_uuid).to.equal(false);
+    });
+  });
+});
+
+describe('Creates models across relationshop', () => {
+  it('Works on one-to-many', () => {
+    return sequelauto.create(Car).then((car) => {
+      expect(car.manufacturerId).to.not.equal(undefined);
     });
   });
 });

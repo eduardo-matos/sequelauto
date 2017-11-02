@@ -1,35 +1,13 @@
 import types from './types';
+import { hasToFillForeignKeys, fillAttributes, getForeignKeys } from './helper';
 
 
 function create(model, attributes = {}) {
-  const newAttributes = Object.assign({}, attributes);
+  if (hasToFillForeignKeys(model, attributes)) {
+    return createWithForeignKeys(model, attributes);
+  }
 
-  Object.keys(model.tableAttributes).forEach((attr) => {
-    const isAutoIncrement = model.tableAttributes[attr].autoIncrement;
-    const allowsNull = model.tableAttributes[attr].allowNull;
-    const hasUsedDefinedValue = attr in attributes;
-
-    if (isAutoIncrement || allowsNull || hasUsedDefinedValue) {
-      return;
-    }
-
-    types.every(([type, func]) => {
-      if (model.tableAttributes[attr].type instanceof type) {
-        const { options } = model.tableAttributes[attr].type;
-        if (options && options.values) {
-          newAttributes[attr] = func(options.values); // enum
-        } else if (options && options.length) {
-          newAttributes[attr] = func(options.length); // string, char...
-        } else {
-          newAttributes[attr] = func();
-        }
-        return false;
-      }
-      return true;
-    });
-  });
-
-  return model.create(newAttributes);
+  return model.create(fillAttributes(model, attributes));
 }
 
 function createMany(model, attributes, quantity = 1) {
@@ -38,6 +16,25 @@ function createMany(model, attributes, quantity = 1) {
     promises.push(create(model, attributes));
   }
   return Promise.all(promises);
+}
+
+function createWithForeignKeys(model, attributes) {
+  const attrs = { ...attributes };
+  const foreignKeys = getForeignKeys(model, attributes);
+
+  return Promise
+    .all(foreignKeys.map(([,, ForeignModel]) => {
+      return create(ForeignModel);
+    }))
+    .then((foreignInstances) => {
+      foreignInstances.forEach((foreignInstance, index) => {
+        const myFieldName = foreignKeys[index][0];
+        const referenceKeyName = foreignKeys[index][1];
+        attrs[myFieldName] = foreignInstance[referenceKeyName];
+      });
+
+      return create(model, attrs);
+    });
 }
 
 export default {
