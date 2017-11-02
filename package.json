@@ -28,10 +28,9 @@
   },
   "homepage": "https://github.com/eduardo-matos/sequelauto#README.md",
   "dependencies": {
-    "moment": "2.19.1",
-    "pad": "2.0.1",
     "sequelize": "4.18.0",
-    "sqlite3": "3.1.13"
+    "moment": "2.19.1",
+    "pad": "2.0.1"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -43,6 +42,7 @@
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.8.0",
     "is-plain-object": "2.0.4",
-    "mocha": "4.0.1"
+    "mocha": "4.0.1",
+    "sqlite3": "3.1.13"
   }
 }
