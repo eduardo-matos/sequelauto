@@ -8,10 +8,13 @@ export function getForeignKeys(model, ignore = {}) {
   const models = Object.keys(attributes).map((attr) => {
     if (attributes[attr].references && !(attr in ignore)) {
       const tableName = attributes[attr].references.model;
-      const modelName = Object.keys(allModels).find(name => allModels[name].tableName === tableName);
+      const modelName = Object.keys(allModels).find((name) => {
+        return allModels[name].tableName === tableName;
+      });
       const referenceKey = attributes[attr].references.key;
       return [attr, referenceKey, allModels[modelName]];
     }
+    return undefined;
   }).filter(v => v);
 
   return models;
