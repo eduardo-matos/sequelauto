@@ -236,6 +236,13 @@ describe('Creates Many', () => {
       expect(record4.field_uuid === record1.field_uuid).to.equal(false);
     });
   });
+
+  it('Fills with defined attributes', () => {
+    return sequelauto.createMany(Uuids, 1, { field_uuid: 'foo' }).then((records) => {
+      const [record] = records;
+      expect(record.field_uuid).to.equal('foo');
+    });
+  });
 });
 
 describe('Creates models across relationships', () => {
