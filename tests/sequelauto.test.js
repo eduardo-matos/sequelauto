@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import isPlainObject from 'is-plain-object';
 import sequelauto from '../src/sequelauto';
-import db from './db';
+import './db';
 import {
   Nulls,
   Strings,
