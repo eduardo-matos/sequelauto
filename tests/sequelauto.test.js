@@ -18,7 +18,7 @@ import {
 } from './models';
 
 
-describe('Create One', () => {
+describe('Creates One', () => {
   it('Nullable fields', () => {
     return sequelauto.create(Nulls).then(() => {
       return Nulls.findOne().then((record) => {
@@ -238,7 +238,7 @@ describe('Creates Many', () => {
   });
 });
 
-describe('Creates models across relationshop', () => {
+describe('Creates models across relationships', () => {
   it('Works on one-to-many', () => {
     return sequelauto.create(Car).then((car) => {
       expect(car.manufacturerId).to.not.equal(undefined);
