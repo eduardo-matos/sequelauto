@@ -45,15 +45,15 @@ You can also create many instances at once:
 ```js
 sequelauto.createMany(User, 10).then(users => {
   // "users" is an array of all created users
-  console.log(users); // [{id: 1, name: "bjda2sghat", "birth": null, "height": 1.3}, ...]
+  console.log(users.map(u => u.dataValues)); // [{id: 1, name: "bjda2sghat", "birth": null, "height": 1.3}, ...]
 });
 ```
 
 There is also a possibility to define your own values:
 
 ```js
-sequelauto.create(User, 10, { name: 'John Doe', height: 5.8 }).then(user => {
-  console.log(user); // [{id: 1, name: "John Doe", "height": 5.8, "birth": null}, ...]
+sequelauto.create(User, { name: 'John Doe', height: 5.8 }).then(user => {
+  console.log(user.dataValues); // [{id: 1, name: "John Doe", "height": 5.8, "birth": null}, ...]
 });
 ```
 
