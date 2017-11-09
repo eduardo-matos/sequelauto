@@ -13,34 +13,34 @@ import {
 } from './generators';
 
 
-export default [
-  [Sequelize.STRING, str],
-  [Sequelize.CHAR, str],
-  [Sequelize.TEXT, str],
+export default {
+  STRING: str,
+  CHAR: str,
+  TEXT: str,
 
-  [Sequelize.TINYINT, int],
-  [Sequelize.SMALLINT, int],
-  [Sequelize.MEDIUMINT, int],
-  [Sequelize.INTEGER, int],
-  [Sequelize.BIGINT, int],
+  TINYINT: int,
+  SMALLINT: int,
+  MEDIUMINT: int,
+  INTEGER: int,
+  BIGINT: int,
 
-  [Sequelize.FLOAT, float],
-  [Sequelize.DOUBLE, float],
-  [Sequelize.DECIMAL, float],
-  [Sequelize.REAL, float],
+  FLOAT: float,
+  DOUBLE: float,
+  DECIMAL: float,
+  REAL: float,
 
-  [Sequelize.BOOLEAN, boolean],
+  BOOLEAN: boolean,
 
-  [Sequelize.ENUM, enumm],
+  ENUM: enumm,
 
-  [Sequelize.DATE, datetime],
-  [Sequelize.DATEONLY, datetime],
-  [Sequelize.TIME, time],
+  DATE: datetime,
+  DATEONLY: datetime,
+  TIME: time,
 
-  [Sequelize.UUID, uuid],
+  UUID: uuid,
 
-  [Sequelize.JSON, json],
-  [Sequelize.JSONB, json],
+  JSONTYPE: json,
+  JSONB: json,
 
-  [Sequelize.BLOB, blob],
-];
+  BLOB: blob,
+};

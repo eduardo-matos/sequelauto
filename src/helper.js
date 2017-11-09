@@ -28,21 +28,18 @@ export function hasToFillForeignKeys(model, attributes) {
 
 export function fillAttribute(model, attribute) {
   let attributeValue;
+  const field = model.tableAttributes[attribute];
+  const typeName = field.type.constructor.name;
+  const { options } = field.type;
+  const func = types[typeName];
 
-  types.every(([type, func]) => {
-    if (model.tableAttributes[attribute].type instanceof type) {
-      const { options } = model.tableAttributes[attribute].type;
-      if (options && options.values) {
-        attributeValue = func(options.values); // enum
-      } else if (options && options.length) {
-        attributeValue = func(options.length); // string, char...
-      } else {
-        attributeValue = func();
-      }
-      return false; // break
-    }
-    return true; // continue
-  });
+  if (options && options.values) {
+    attributeValue = func(options.values); // enum
+  } else if (options && options.length) {
+    attributeValue = func(options.length); // string, char...
+  } else {
+    attributeValue = func();
+  }
 
   return attributeValue;
 }
