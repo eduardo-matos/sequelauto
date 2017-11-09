@@ -11,7 +11,7 @@ export function str(length = 10, chars = '0123456789abcdefghijklmnopqrstuvwxyzAB
 }
 
 export function int(max = 1) {
-  return Math.floor(Math.random() * (max + 1));
+  return () => Math.floor(Math.random() * (max + 1));
 }
 
 export function float(max = 1) {
@@ -19,11 +19,11 @@ export function float(max = 1) {
 }
 
 export function boolean() {
-  return !!int(1);
+  return !!int(1)();
 }
 
 export function enumm(values) {
-  return values[int(values.length - 1)];
+  return values[int(values.length - 1)()];
 }
 
 export function datetime() {
@@ -31,9 +31,9 @@ export function datetime() {
 }
 
 export function time() {
-  const hours = int(838);
-  const minutes = pad(2, int(59), '0');
-  const seconds = pad(2, int(59), '0');
+  const hours = int(838)();
+  const minutes = pad(2, int(59)(), '0');
+  const seconds = pad(2, int(59)(), '0');
 
   return `${hours}:${minutes}:${seconds}`;
 }

@@ -18,11 +18,11 @@ export default {
   CHAR: str,
   TEXT: str,
 
-  TINYINT: int,
-  SMALLINT: int,
-  MEDIUMINT: int,
-  INTEGER: int,
-  BIGINT: int,
+  TINYINT: int(127),
+  SMALLINT: int(32767),
+  MEDIUMINT: int(8388607),
+  INTEGER: int(2147483647),
+  BIGINT: int(9223372036854775807),
 
   FLOAT: float,
   DOUBLE: float,
