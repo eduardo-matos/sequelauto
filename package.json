@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --require babel-core/register tests",
     "lint": "./node_modules/.bin/eslint src/",
-    "build": "./node_modules/.bin/babel src/ --out-dir dist/"
+    "build": "./node_modules/.bin/babel src/ --out-dir dist/",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
