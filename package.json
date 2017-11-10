@@ -4,7 +4,8 @@
   "description": "Automatically generate records on database for Sequelize's model",
   "main": "dist/sequelauto.js",
   "scripts": {
-    "test": "mocha --require babel-core/register tests",
+    "test": "nyc -x tests --reporter=text mocha --require babel-core/register tests",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint src/",
     "build": "./node_modules/.bin/babel src/ --out-dir dist/",
     "prepublishOnly": "npm run test && npm run build"
@@ -39,11 +40,13 @@
     "babel-preset-env": "1.6.1",
     "babel-preset-stage-2": "6.24.1",
     "chai": "4.1.2",
+    "coveralls": "3.0.0",
     "eslint": "4.9.0",
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.8.0",
     "is-plain-object": "2.0.4",
     "mocha": "4.0.1",
+    "nyc": "11.3.0",
     "sqlite3": "3.1.13"
   }
 }
