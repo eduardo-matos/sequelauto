@@ -1,12 +1,12 @@
 import types from './types';
 
 
-export function getForeignKeys(model, ignore = {}) {
+export function getForeignKeys(model) {
   const attributes = model.tableAttributes;
   const allModels = model.sequelize.models;
 
   const models = Object.keys(attributes).map((attr) => {
-    if (attributes[attr].references && !(attr in ignore)) {
+    if (attributes[attr].references) {
       const tableName = attributes[attr].references.model;
       const modelName = Object.keys(allModels).find((name) => {
         return allModels[name].tableName === tableName;
