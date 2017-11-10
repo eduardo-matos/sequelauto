@@ -55,9 +55,9 @@ describe('Generators', () => {
       expect(float().toString()).to.match(/\d+\.\d+/);
     });
 
-    it('Generates a number between 0 and 2 by default', () => {
+    it('Generates a number between 0 and 1 by default', () => {
       range(100).forEach(() => {
-        expect(float()).to.within(0, 2);
+        expect(float()).to.within(0, 1);
       });
     });
 
@@ -105,21 +105,7 @@ describe('Generators', () => {
     });
 
     it('Generates time as hour:minute:second', () => {
-      expect(time()).to.match(/^\d{2,3}:\d{2}:\d{2}$/);
-    });
-
-    it('Pads only minutes and seconds with zero', () => {
-      const hours = range(1000).map(() => time().split(':')[0]);
-      const minutes = range(1000).map(() => time().split(':')[1]);
-      const seconds = range(1000).map(() => time().split(':')[2]);
-
-      const anyGeneratedHourStartsWithZero = !!hours.filter(val => val[0] === '0').length;
-      const anyGeneratedMinuteStartsWithZero = !!minutes.filter(val => val[0] === '0').length;
-      const anyGeneratedSecondStartsWithZero = !!seconds.filter(val => val[0] === '0').length;
-
-      expect(anyGeneratedHourStartsWithZero).to.equal(false);
-      expect(anyGeneratedMinuteStartsWithZero).to.equal(true);
-      expect(anyGeneratedSecondStartsWithZero).to.equal(true);
+      range(1000).forEach(() => expect(time()).to.match(/^\d{1,3}:\d{2}:\d{2}$/));
     });
   });
 

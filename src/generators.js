@@ -15,7 +15,7 @@ export function int(max = 1) {
 }
 
 export function float(max = 1) {
-  return Math.random() * (max + 1);
+  return Math.random() * max;
 }
 
 export function boolean() {
