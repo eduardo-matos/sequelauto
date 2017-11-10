@@ -6,8 +6,8 @@
   "scripts": {
     "test": "nyc -x tests --reporter=text mocha --require babel-core/register tests",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "./node_modules/.bin/eslint src/",
-    "build": "./node_modules/.bin/babel src/ --out-dir dist/",
+    "lint": "eslint src/ tests/",
+    "build": "babel src/ --out-dir dist/",
     "prepublishOnly": "npm run test && npm run build"
   },
   "repository": {
