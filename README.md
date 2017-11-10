@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/eduardo-matos/sequelauto.svg?branch=master)](https://travis-ci.org/eduardo-matos/sequelauto)
 [![npm version](https://badge.fury.io/js/sequelauto.svg)](https://badge.fury.io/js/sequelauto)
+[![Coverage Status](https://coveralls.io/repos/github/eduardo-matos/sequelauto/badge.svg?branch=master)](https://coveralls.io/github/eduardo-matos/sequelauto?branch=master)
 
 Automatically generate records on database for Sequelize's model.
 
