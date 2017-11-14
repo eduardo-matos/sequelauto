@@ -50,9 +50,10 @@ export function fillAttributes(model, attributes) {
   Object.keys(model.tableAttributes).forEach((attr) => {
     const isAutoIncrement = model.tableAttributes[attr].autoIncrement;
     const allowsNull = model.tableAttributes[attr].allowNull;
-    const hasUsedDefinedValue = attr in attributes;
+    const hasDefaultValue = model.tableAttributes[attr].defaultValue;
+    const hasUserDefinedValue = attr in attributes;
 
-    if (isAutoIncrement || allowsNull || hasUsedDefinedValue) {
+    if (isAutoIncrement || allowsNull || hasDefaultValue || hasUserDefinedValue) {
       return;
     }
 

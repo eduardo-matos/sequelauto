@@ -150,3 +150,13 @@ export const Car = db.define('car', {
 });
 
 Car.belongsTo(Manufacturer);
+
+export const WithDefaultValues = db.define('with_default_values', {
+  field_inlinedefault: { type: Sequelize.STRING, allowNull: false, defaultValue: 'inline default' },
+  field_functionaldefault: { type: Sequelize.INTEGER, allowNull: false, defaultValue: () => 7 },
+  field_currentdatedefault: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.NOW },
+  field_uuidv1default: { type: Sequelize.UUID, allowNull: false, defaultValue: Sequelize.UUIDV1 },
+  field_uuidv4default: { type: Sequelize.UUID, allowNull: false, defaultValue: Sequelize.UUIDV4 },
+}, {
+  timestamps: false,
+});

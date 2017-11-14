@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 import isPlainObject from 'is-plain-object';
+import sinon from 'sinon';
 import * as sequelauto from '../src/sequelauto';
 import './db';
+import types from '../src/types';
 import {
   Nulls,
   Strings,
@@ -15,6 +17,7 @@ import {
   Customs,
 
   Car,
+  WithDefaultValues,
 } from './models';
 
 
@@ -221,6 +224,24 @@ describe('Creates One', () => {
   it('Returns created record', () => {
     sequelauto.create(Uuids).then((record) => {
       expect(record.field_uuid).to.not.equal(undefined);
+    });
+  });
+
+  it('Ignores fields with a default value', () => {
+    const dummyUuid = '00000000-0000-0000-0000-000000000000';
+    const dummyDate = new Date(1999, 1, 1);
+    sinon.stub(types, 'UUID').returns(dummyUuid);
+    sinon.stub(types, 'DATE').returns(dummyDate);
+
+    return sequelauto.create(WithDefaultValues).then((record) => {
+      expect(record.field_inlinedefault).to.equal('inline default');
+      expect(record.field_functionaldefault).to.equal(7);
+      expect(record.field_currentdatedefault.getFullYear()).to.not.equal(dummyDate.getFullYear());
+      expect(record.field_uuidv1default).to.not.equal(dummyUuid);
+      expect(record.field_uuidv4default).to.not.equal(dummyUuid);
+
+      types.UUID.restore();
+      types.DATE.restore();
     });
   });
 });
