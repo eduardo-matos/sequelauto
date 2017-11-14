@@ -264,6 +264,12 @@ describe('Creates Many', () => {
       expect(record.field_uuid).to.equal('foo');
     });
   });
+
+  it('Creates one record by default', () => {
+    return sequelauto.createMany(Uuids).then((records) => {
+      expect(records.length).to.equal(1);
+    });
+  });
 });
 
 describe('Creates models across relationships', () => {
