@@ -15,9 +15,9 @@ import {
   Jsons,
   Blobs,
   Customs,
-
-  Car,
   WithDefaultValues,
+  Profile,
+  Car,
 } from './models';
 
 
@@ -273,6 +273,12 @@ describe('Creates Many', () => {
 });
 
 describe('Creates models across relationships', () => {
+  it('Works on one-to-one', () => {
+    return sequelauto.create(Profile).then((profile) => {
+      expect(profile.personId).to.not.equal(undefined);
+    });
+  });
+
   it('Works on one-to-many', () => {
     return sequelauto.create(Car).then((car) => {
       expect(car.manufacturerId).to.not.equal(undefined);

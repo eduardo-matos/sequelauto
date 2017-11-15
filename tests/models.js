@@ -137,6 +137,30 @@ export const Customs = db.define('customs', {
   timestamps: false,
 });
 
+export const WithDefaultValues = db.define('with_default_values', {
+  field_inlinedefault: { type: Sequelize.STRING, allowNull: false, defaultValue: 'inline default' },
+  field_functionaldefault: { type: Sequelize.INTEGER, allowNull: false, defaultValue: () => 7 },
+  field_currentdatedefault: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.NOW },
+  field_uuidv1default: { type: Sequelize.UUID, allowNull: false, defaultValue: Sequelize.UUIDV1 },
+  field_uuidv4default: { type: Sequelize.UUID, allowNull: false, defaultValue: Sequelize.UUIDV4 },
+}, {
+  timestamps: false,
+});
+
+export const Person = db.define('person', {
+  name: Sequelize.STRING,
+}, {
+  timestamps: false,
+});
+
+export const Profile = db.define('profile', {
+  birth: Sequelize.DATE,
+}, {
+  timestamps: false,
+});
+
+Profile.belongsTo(Person);
+
 export const Manufacturer = db.define('manufacturer', {
   name: Sequelize.STRING,
 }, {
@@ -149,14 +173,4 @@ export const Car = db.define('car', {
   timestamps: false,
 });
 
-Car.belongsTo(Manufacturer);
-
-export const WithDefaultValues = db.define('with_default_values', {
-  field_inlinedefault: { type: Sequelize.STRING, allowNull: false, defaultValue: 'inline default' },
-  field_functionaldefault: { type: Sequelize.INTEGER, allowNull: false, defaultValue: () => 7 },
-  field_currentdatedefault: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.NOW },
-  field_uuidv1default: { type: Sequelize.UUID, allowNull: false, defaultValue: Sequelize.UUIDV1 },
-  field_uuidv4default: { type: Sequelize.UUID, allowNull: false, defaultValue: Sequelize.UUIDV4 },
-}, {
-  timestamps: false,
-});
+Manufacturer.hasMany(Car);
