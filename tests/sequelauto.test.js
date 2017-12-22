@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import isPlainObject from 'is-plain-object';
 import sinon from 'sinon';
-import config from '../src/config';
 import * as sequelauto from '../src/sequelauto';
 import './db';
 import types from '../src/types';
