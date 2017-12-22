@@ -83,3 +83,12 @@ By default nullable fields remain null.
 1. `JSON`
 1. `JSONB`
 1. `BLOB`
+
+In order to avoid mistakes, by default it runs only on SQLite.
+Here is how to disable this feature:
+
+```js
+const sequelauto = require('sequelauto');
+
+sequelauto.configure('RUN_ONLY_ON_SQLITE', false);
+```
