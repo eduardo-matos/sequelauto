@@ -1,0 +1,14 @@
+{
+  "globals": {
+      "describe": true,
+      "it": true,
+      "before": true,
+      "beforeEach": true,
+      "afterEach": true
+  },
+  "rules": {
+    "no-unused-expressions": 0,
+    "no-empty": 0,
+    "import/no-named-as-default-member": 0
+  }
+}
