@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import isPlainObject from 'is-plain-object';
 import sinon from 'sinon';
+import config from '../src/config';
 import * as sequelauto from '../src/sequelauto';
 import './db';
 import types from '../src/types';
@@ -20,6 +21,32 @@ import {
   Car,
 } from './models';
 
+
+describe('Dont run on non-SQLite engine', () => {
+  const initialDialect = Nulls.sequelize.options.dialect;
+  beforeEach(() => { Nulls.sequelize.options.dialect = 'mysql'; });
+  afterEach(() => { Nulls.sequelize.options.dialect = initialDialect; });
+
+  it('Dont create on non-sqlite engine', () => {
+    return sequelauto.create(Nulls)
+      .catch(err => expect(err.message).to.eq('Engine has to be sqlite!'))
+      .then(() => new Error('Should not run on non-sqlite engine'));
+  });
+});
+
+describe('Runs on non-sqlite engine', () => {
+  beforeEach(() => {
+    sequelauto.configure('RUN_ONLY_ON_SQLITE', false);
+    Nulls.sequelize.options.dialect = 'mysql';
+  });
+
+  afterEach(() => {
+    sequelauto.configure('RUN_ONLY_ON_SQLITE', true);
+    Nulls.sequelize.options.dialect = 'sqlite';
+  });
+
+  it('Can run on non-sqlite if configured to', () => sequelauto.create(Nulls));
+});
 
 describe('Creates One', () => {
   it('Nullable fields', () => {

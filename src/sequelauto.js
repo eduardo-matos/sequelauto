@@ -1,3 +1,4 @@
+import config from './config';
 import { hasToFillForeignKeys, fillAttributes, getForeignKeys } from './helper';
 
 
@@ -8,11 +9,17 @@ import { hasToFillForeignKeys, fillAttributes, getForeignKeys } from './helper';
  * @return {Promise}
  */
 export function create(model, attributes = {}) {
-  if (hasToFillForeignKeys(model, attributes)) {
-    return createWithForeignKeys(model, attributes);
-  }
+  return new Promise((resolve, reject) => {
+    if (config.RUN_ONLY_ON_SQLITE && model.sequelize.options.dialect !== 'sqlite') {
+      reject(new Error('Engine has to be sqlite!'));
+    }
 
-  return model.create(fillAttributes(model, attributes));
+    if (hasToFillForeignKeys(model, attributes)) {
+      resolve(createWithForeignKeys(model, attributes));
+    }
+
+    resolve(model.create(fillAttributes(model, attributes)));
+  });
 }
 
 /**
@@ -47,4 +54,8 @@ function createWithForeignKeys(model, attributes) {
 
       return create(model, attrs);
     });
+}
+
+export function configure(key, value) {
+  config[key] = value;
 }
