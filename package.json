@@ -1,6 +1,6 @@
 {
   "name": "sequelauto",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically generate records on database for Sequelize's model",
   "main": "dist/sequelauto.js",
   "scripts": {
