@@ -265,6 +265,7 @@ describe('Creates One', () => {
       expect(record.field_currentdatedefault.getFullYear()).to.not.equal(dummyDate.getFullYear());
       expect(record.field_uuidv1default).to.not.equal(dummyUuid);
       expect(record.field_uuidv4default).to.not.equal(dummyUuid);
+      expect(record.field_boolean).to.be.false;
 
       types.UUID.restore();
       types.DATE.restore();
