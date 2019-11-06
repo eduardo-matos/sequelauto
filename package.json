@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/eduardo-matos/sequelauto#README.md",
   "dependencies": {
-    "sequelize": "4.18.0",
+    "sequelize": "5.21.2",
     "moment": "2.21.0",
     "pad": "2.0.1"
   },
