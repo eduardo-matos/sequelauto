@@ -45,7 +45,7 @@
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.8.0",
     "is-plain-object": "2.0.4",
-    "lodash": "4.17.13",
+    "lodash": "4.17.19",
     "mocha": "4.0.1",
     "nyc": "11.3.0",
     "sinon": "4.1.2",
